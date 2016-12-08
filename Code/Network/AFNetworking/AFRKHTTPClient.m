@@ -279,12 +279,11 @@ NSArray * AFRKQueryStringPairsFromKeyAndValue(NSString *key, id value) {
         [self setDefaultHeader:@"User-Agent" value:userAgent];
     }
 
-#ifdef _SYSTEMCONFIGURATION_H
-    if (!self.disableReachability) {
-        self.networkReachabilityStatus = AFRKNetworkReachabilityStatusUnknown;
-        [self startMonitoringNetworkReachability];        
-    }
-#endif
+    // remove reachability since we are using AFNetworking
+//#ifdef _SYSTEMCONFIGURATION_H
+    //self.networkReachabilityStatus = AFRKNetworkReachabilityStatusUnknown;
+    //[self startMonitoringNetworkReachability];
+//#endif
 
     self.operationQueue = [[NSOperationQueue alloc] init];
 	[self.operationQueue setMaxConcurrentOperationCount:NSOperationQueueDefaultMaxConcurrentOperationCount];
