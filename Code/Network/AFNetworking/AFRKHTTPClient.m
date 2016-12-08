@@ -280,8 +280,10 @@ NSArray * AFRKQueryStringPairsFromKeyAndValue(NSString *key, id value) {
     }
 
 #ifdef _SYSTEMCONFIGURATION_H
-    self.networkReachabilityStatus = AFRKNetworkReachabilityStatusUnknown;
-    [self startMonitoringNetworkReachability];
+    if (!self.disableReachability) {
+        self.networkReachabilityStatus = AFRKNetworkReachabilityStatusUnknown;
+        [self startMonitoringNetworkReachability];        
+    }
 #endif
 
     self.operationQueue = [[NSOperationQueue alloc] init];
